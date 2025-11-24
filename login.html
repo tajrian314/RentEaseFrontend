@@ -1,162 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RentEase | Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | RentEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0b61ff, #3a7bd5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Poppins',sans-serif;
+      height:100vh;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    /* Background with blur */
+    body::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;width:100%;height:100%;
+      background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+      filter:blur(8px) brightness(0.8);
+      z-index:-1;
     }
 
-    .login-container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 2rem 2.5rem;
-      border-radius: 18px;
-      width: 90%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
+    .wrapper{
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(15px);
+      border-radius:20px;
+      box-shadow:0 0 30px rgba(0,0,0,0.3);
+      width:380px;padding:2rem;
+      color:#fff;text-align:center;
     }
 
-    .login-container::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at top left, rgba(11,97,255,0.15), transparent 70%);
-      top: -50%; left: -50%;
-      z-index: 0;
+    h2{font-weight:600;margin-bottom:1.5rem;}
+    .tabs{display:flex;justify-content:space-between;margin-bottom:1rem;}
+    .tabs button{
+      flex:1;padding:10px;border:none;cursor:pointer;
+      background:transparent;color:#fff;font-weight:600;
+      border-bottom:2px solid transparent;transition:.3s;
     }
-
-    .login-container h1 {
-      color: #0b61ff;
-      font-size: 2rem;
-      margin-bottom: 0.3rem;
-      position: relative;
-      z-index: 1;
+    .tabs button.active{border-bottom:2px solid #fff;color:#fff;}
+    form{display:flex;flex-direction:column;gap:12px;margin-top:1rem;}
+    input,select{
+      padding:10px;border:none;border-radius:8px;font-size:15px;
+      outline:none;background:rgba(255,255,255,0.9);
     }
-
-    .login-container p {
-      color: #555;
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-      position: relative;
-      z-index: 1;
+    .extras{
+      display:flex;justify-content:space-between;
+      font-size:13px;color:#eee;align-items:center;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
+    .extras a{color:#fff;text-decoration:none;}
+    button.submit{
+      background:#fff;color:#0b61ff;border:none;border-radius:8px;
+      padding:10px;font-weight:600;cursor:pointer;transition:.3s;
     }
-
-    input[type="email"],
-    input[type="password"] {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-size: 0.95rem;
-      transition: 0.3s ease;
-    }
-
-    input:focus {
-      border-color: #0b61ff;
-      box-shadow: 0 0 5px rgba(11,97,255,0.4);
-    }
-
-    .roles {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 5px;
-    }
-
-    .roles label {
-      font-weight: 500;
-      color: #333;
-    }
-
-    button {
-      background: #0b61ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      padding: 12px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #094ad1;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(11,97,255,0.3);
-    }
-
-    .footer-link {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #0b61ff;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      transition: 0.3s;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-link:hover {
-      color: #084ad1;
-      text-decoration: underline;
-    }
+    button.submit:hover{background:#0b61ff;color:#fff;}
+    .hidden{display:none;}
+    p.bottom-text{font-size:13px;margin-top:1rem;}
+    p.bottom-text a{color:#fff;font-weight:600;text-decoration:none;}
   </style>
 </head>
-
 <body>
-  <div class="login-container">
-    <h1>Welcome to RentEase</h1>
-    <p>Find your space, or manage your listings easily</p>
+  <div class="wrapper">
+    <h2>Welcome to RentEase</h2>
+
+    <div class="tabs">
+      <button id="loginTab" class="active">Login</button>
+      <button id="signupTab">Sign Up</button>
+    </div>
 
     <form id="loginForm">
-      <input type="email" id="email" placeholder="Enter your email" required>
-      <input type="password" id="password" placeholder="Enter your password" required>
-
-      <div class="roles">
-        <label><input type="radio" name="role" value="owner" required> Owner</label>
-        <label><input type="radio" name="role" value="renter"> Renter</label>
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPass" placeholder="Password" required>
+      <select id="loginRole" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="owner">Owner</option>
+        <option value="renter">Renter</option>
+      </select>
+      <div class="extras">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot Password?</a>
       </div>
-
-      <button type="submit">Continue</button>
+      <button type="submit" class="submit">Login</button>
+      <p class="bottom-text">Don't have an account? <a id="switchToSignup">Register</a></p>
     </form>
 
-    <a href="index.html" class="footer-link">← Back to Home</a>
+    <form id="signupForm" class="hidden">
+      <input type="text" id="signupName" placeholder="Full Name" required>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPass" placeholder="Password" required>
+      <select id="signupRole" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="owner">Owner</option>
+        <option value="renter">Renter</option>
+      </select>
+      <button type="submit" class="submit">Sign Up</button>
+      <p class="bottom-text">Already have an account? <a id="switchToLogin">Login</a></p>
+    </form>
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', e => {
+    const loginTab=document.getElementById("loginTab"),
+          signupTab=document.getElementById("signupTab"),
+          loginForm=document.getElementById("loginForm"),
+          signupForm=document.getElementById("signupForm"),
+          switchToSignup=document.getElementById("switchToSignup"),
+          switchToLogin=document.getElementById("switchToLogin");
+
+    loginTab.addEventListener("click",()=>showLogin());
+    signupTab.addEventListener("click",()=>showSignup());
+    switchToSignup.addEventListener("click",()=>showSignup());
+    switchToLogin.addEventListener("click",()=>showLogin());
+
+    function showLogin(){
+      loginTab.classList.add("active");
+      signupTab.classList.remove("active");
+      loginForm.classList.remove("hidden");
+      signupForm.classList.add("hidden");
+    }
+
+    function showSignup(){
+      signupTab.classList.add("active");
+      loginTab.classList.remove("active");
+      signupForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+    }
+
+    signupForm.addEventListener("submit",(e)=>{
       e.preventDefault();
-      const role = document.querySelector('input[name="role"]:checked').value;
-      if (role === 'owner') window.location.href = 'owner-dashboard.html';
-      else window.location.href = 'renter-dashboard.html';
+      const email=document.getElementById("signupEmail").value,
+            pass=document.getElementById("signupPass").value,
+            role=document.getElementById("signupRole").value;
+      if(localStorage.getItem(email)){alert("Account already exists! Please login.");showLogin();return;}
+      localStorage.setItem(email,JSON.stringify({email,password:pass,role}));
+      alert("Signup successful! Please login now.");
+      showLogin();
+    });
+
+    loginForm.addEventListener("submit",(e)=>{
+      e.preventDefault();
+      const email=document.getElementById("loginEmail").value,
+            pass=document.getElementById("loginPass").value,
+            role=document.getElementById("loginRole").value;
+      const stored=localStorage.getItem(email);
+      if(!stored){alert("Account not found. Please sign up first.");showSignup();return;}
+      const user=JSON.parse(stored);
+      if(user.password!==pass){alert("Incorrect password!");return;}
+      if(user.role!==role){alert("Wrong role selected!");return;}
+      alert("Welcome back!");
+      if(role==="owner")window.location.href="owner-dashboard.html";
+      else window.location.href="renter-dashboard.html";
     });
   </script>
 </body>
