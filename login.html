@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RentEase | Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0b61ff, #3a7bd5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem 2.5rem;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-container::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at top left, rgba(11,97,255,0.15), transparent 70%);
+      top: -50%; left: -50%;
+      z-index: 0;
+    }
+
+    .login-container h1 {
+      color: #0b61ff;
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container p {
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #0b61ff;
+      box-shadow: 0 0 5px rgba(11,97,255,0.4);
+    }
+
+    .roles {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 5px;
+    }
+
+    .roles label {
+      font-weight: 500;
+      color: #333;
+    }
+
+    button {
+      background: #0b61ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #094ad1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(11,97,255,0.3);
+    }
+
+    .footer-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #0b61ff;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-link:hover {
+      color: #084ad1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h1>Welcome to RentEase</h1>
+    <p>Find your space, or manage your listings easily</p>
+
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <div class="roles">
+        <label><input type="radio" name="role" value="owner" required> Owner</label>
+        <label><input type="radio" name="role" value="renter"> Renter</label>
+      </div>
+
+      <button type="submit">Continue</button>
+    </form>
+
+    <a href="index.html" class="footer-link">← Back to Home</a>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const role = document.querySelector('input[name="role"]:checked').value;
+      if (role === 'owner') window.location.href = 'owner-dashboard.html';
+      else window.location.href = 'renter-dashboard.html';
+    });
+  </script>
+</body>
+</html>
