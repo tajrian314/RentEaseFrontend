@@ -1,182 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-    <title>RentEase - Renting Space Made Easy</title>
-    <meta name="description" content="RentEase — professional house consultancy. Find family, bachelor, sublet or hostel properties near you." />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+  <title>RentEase - Renting Space Made Easy</title>
+  <meta name="description" content="RentEase — professional house consultancy. Find family, bachelor, sublet, hostel or office properties near you." />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
+  <!-- nav -->
+  <header id="site-header" class="site-header">
+    <nav class="navbar" role="navigation" aria-label="Primary">
+      <a href="#top" class="logo">
+        RentEase <img src="Image/icons.png" class="icon" alt="RentEase logo">
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">☰</button>
+      <ul id="primary-menu" class="nav-links" role="menu">
+        <li><a href="#property">Property</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about-us">About Us</a></li>
+      </ul>
+      <a href="login.html" class="signup-btn">Login / Signup</a>
+    </nav>
+  </header>
 
-<header id="site-header" class="site-header">
-  <nav class="navbar" role="navigation" aria-label="Primary">
-    <a href="#top" class="logo"> 
-      RentEase
-      <img src="Image/icons.png" class="icon" alt="RentEase logo">
-    </a>
+  <!-- hero -->
+  <main id="top">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>Renting Space<br>Made Easy</h1>
+        <p>One Click to Your Next Space - Where Renting Meets Convenience!</p>
+        <a class="explore-btn" href="#property">Explore Now</a>
+      </div>
 
-    <button id="nav-toggle" class="nav-toggle" aria-controls="primary-menu" aria-expanded="false" aria-label="Open menu">
-      <span class="sr-only">Menu</span>
-      ☰
-    </button>
-
-    <ul id="primary-menu" class="nav-links" role="menu">
-      <li role="none"><a role="menuitem" href="#property">Property</a></li>
-      <li role="none"><a role="menuitem" href="#services">Services</a></li>
-      <li role="none"><a role="menuitem" href="#products">Products</a></li>
-      <li role="none"><a role="menuitem" href="#about-us">About Us</a></li>
-    </ul>
-
-    <a href="login.html" class="signup-btn">Login / Signup</a>
-
-  </nav>
-</header>
-
-<main id="top">
-  <section class="hero-section" aria-label="Hero">
-    <div class="hero-content">
-      <h1>Renting Space<br>Made Easy</h1>
-      <p>One Click to Your Next Space - Where Renting Meets Convenience!</p>
-      <a class="explore-btn" href="#property">Explore Now</a>
-    </div>
-
-    <div class="search-bar" aria-label="Property search">
-      <form id="search-form">
-        <div class="search-input">
-          <label for="location">Location</label>
-          <input type="text" id="location" name="location" placeholder="Search by location" autocomplete="off">
-        </div>
-
-        <div class="search-input">
-          <label for="type">Type</label>
-          <select id="type" name="type" aria-label="Property type">
-            <option value="">All</option>
-            <option value="Family">Family</option>
-            <option value="Bachelor">Bachelor</option>
-            <option value="Sublet">Sublet</option>
-            <option value="Hostel">Hostel</option>
-          </select>
-        </div>
-
-        <div class="search-input">
-          <label for="budget">Budget (BDT)</label>
-         <select id="budget-range">
-    <option value="">Select budget range</option>
-    <option value="lt5000">Less than 5,000</option>
-    <option value="5to20">5,000 - 20,000</option>
-    <option value="20to50">20,000 - 50,000</option>
-    <option value="gt50000">Above 50,000</option>
-</select>
-
-        </div>
-
-        <button type="submit" class="search-btn">Search Now</button>
-      </form>
-    </div>
-  </section>
-
-  <section id="property" class="popular-residence" aria-labelledby="property-heading">
-    <div class="section-header">
-      <h2 id="property-heading">Our Popular Spaces</h2>
-      <a href="#" class="explore-more">Explore More →</a>
-    </div>
-
-    <div class="property-cards" aria-live="polite">
-      <article class="card" aria-label="Residence 1">
-        <img loading="lazy" src="Image/1st_pic.jpg" alt="Room Photo">
-        <div class="card-details">
-          <p class="location">Zakir hossain Road By Lane East Nasirabad, Chittagong</p>
-          <div class="info">
-            <span>3 Bed</span>
-            <span>3 Bathroom</span>
-            <span>3 Corridor</span>
+      <div class="search-bar">
+        <form id="search-form">
+          <div class="search-input">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Search by location" autocomplete="off">
           </div>
-          <div class="booking">
-            <button class="book-now">Book Now</button>
-            <span class="price">55,000 BDT</span>
-          </div>
-        </div>
-      </article>
 
-      <article class="card" aria-label="Residence 2">
-        <img loading="lazy" src="Image/2nd_pic.png" alt="Room Photo">
-        <div class="card-details">
-          <p class="location">13/A, South Khulshi, Road #02, Plot #06, Chittagong</p>
-          <div class="info">
-            <span>1 Bed (Female)</span>
-            <span>1 Bath</span>
-            <span>Women Hostel</span>
+          <div class="search-input">
+            <label for="type">Type</label>
+            <select id="type" name="type">
+              <option value="">All</option>
+              <option value="Family">Family</option>
+              <option value="Bachelor">Bachelor</option>
+              <option value="Sublet">Sublet</option>
+              <option value="Hostel">Hostel</option>
+              <option value="Office">Office</option>
+            </select>
           </div>
-          <div class="booking">
-            <button class="book-now">Book Now</button>
-            <span class="price">5,500 BDT</span>
-          </div>
-        </div>
-      </article>
 
-      <article class="card" aria-label="Residence 3">
-        <img loading="lazy" src="Image/3rd_pic.png" alt="Room Photo">
-        <div class="card-details">
-          <p class="location">GEC, Kulshi, Chittagong</p>
-          <div class="info">
-            <span>1 Room</span>
-            <span>Office Space</span>
+          <div class="search-input">
+            <label for="budget">Budget (BDT)</label>
+            <select id="budget-range">
+              <option value="">Select budget range</option>
+              <option value="lt5000">Less than 5,000</option>
+              <option value="5to20">5,000 - 20,000</option>
+              <option value="20to50">20,000 - 50,000</option>
+              <option value="gt50000">Above 50,000</option>
+            </select>
           </div>
-          <div class="booking">
-            <button class="book-now">Book Now</button>
-            <span class="price">8,000 BDT</span>
+
+          <button type="submit" class="search-btn">Search Now</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- properties -->
+    <section id="property" class="popular-residence">
+      <div class="section-header">
+        <h2>Our Popular Spaces</h2>
+        <a href="#" class="explore-more">Explore More →</a>
+      </div>
+
+      <div class="property-cards">
+        <article class="card">
+          <img loading="lazy" src="Image/1st_pic.jpg" alt="Room Photo">
+          <div class="card-details">
+            <p class="location">Zakir Hossain Road, East Nasirabad, Chittagong</p>
+            <div class="info"><span>3 Bed</span><span>3 Bath</span><span>3 Corridor</span></div>
+            <div class="booking">
+              <button class="book-now">Book Now</button>
+              <span class="price">55,000 BDT</span>
+            </div>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
 
-  <section id="services" class="section-placeholder"><h2>Services</h2><p>Coming soon.</p></section>
-  <section id="products" class="section-placeholder"><h2>Products</h2><p>Coming soon.</p></section>
-  <section id="about-us" class="section-placeholder"><h2>About Us</h2><p>Coming soon.</p></section>
-</main>
+        <article class="card">
+          <img loading="lazy" src="Image/2nd_pic.png" alt="Room Photo">
+          <div class="card-details">
+            <p class="location">13/A, South Khulshi, Road #02, Plot #06, Chittagong</p>
+            <div class="info"><span>1 Bed (Female)</span><span>1 Bath</span><span>Women Hostel</span></div>
+            <div class="booking">
+              <button class="book-now">Book Now</button>
+              <span class="price">5,500 BDT</span>
+            </div>
+          </div>
+        </article>
 
-<footer>
+        <article class="card">
+          <img loading="lazy" src="Image/3rd_pic.png" alt="Room Photo">
+          <div class="card-details">
+            <p class="location">GEC, Kulshi, Chittagong</p>
+            <div class="info"><span>1 Room</span><span>Office Space</span></div>
+            <div class="booking">
+              <button class="book-now">Book Now</button>
+              <span class="price">8,000 BDT</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- others -->
+    <section id="services" class="section-placeholder"><h2>Services</h2><p>Coming soon.</p></section>
+    <section id="products" class="section-placeholder"><h2>Products</h2><p>Coming soon.</p></section>
+    <section id="about-us" class="section-placeholder"><h2>About Us</h2><p>Coming soon.</p></section>
+  </main>
+
+  <!-- footer -->
+  <footer>
   <div class="footer-content">
-    <p>&copy; 2025 RentEase. All rights reserved.</p>
+    <p>© 2025 RentEase. All rights reserved.</p>
     <div class="social-links">
-    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-    <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
-</div>
+      <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+    </div>
   </div>
 </footer>
-<!-- Booking Form Modal -->
-<div id="booking-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2>Book Your Space</h2>
-    <form id="booking-form">
-      <label for="name">Name:</label>
-      <input type="text" id="name" required>
 
-      <label for="phone">Phone:</label>
-      <input type="tel" id="phone" required>
 
-      <label for="message">Message:</label>
-      <textarea id="message" rows="3" placeholder="Any special request?"></textarea>
-
-      <button type="submit">Submit</button>
-    </form>
+  <!-- booking modal -->
+  <div id="booking-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Book Your Space</h2>
+      <form id="booking-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" required>
+        <label for="message">Message:</label>
+        <textarea id="message" rows="3" placeholder="Any special request?"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   </div>
-</div>
 
-
-
-
-
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
