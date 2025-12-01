@@ -47,6 +47,10 @@ a {
   border: 0;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* Header: sticky navbar and background */
 .site-header {
   position: sticky;
@@ -254,6 +258,10 @@ a {
   padding: 120px var(--container-pad) 50px;
 }
 
+.search-results {
+  padding: 10px var(--container-pad) 80px;
+}
+
 /* Section header area */
 .section-header {
   display: flex;
@@ -261,6 +269,11 @@ a {
   align-items: center;
   margin-bottom: 2rem;
   gap: 1rem;
+}
+
+.search-status {
+  color: #555;
+  font-size: 0.95rem;
 }
 
 .section-header h2 {

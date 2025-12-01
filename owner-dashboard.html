@@ -125,28 +125,25 @@
     <!-- my properties -->
     <div class="section" id="property-list">
       <h4>🏡 My Listed Properties</h4>
-      <div class="property-card">
-        <img src="Image/1st_pic.jpg" alt="Green View Apartment">
-        <h4>Green View Apartment</h4>
-        <p><strong>Location:</strong> East Nasirabad, Chittagong</p>
-        <p><strong>Rent:</strong> 12,000 BDT</p>
-        <p><strong>Status:</strong> Available ✅</p>
-      </div>
+      <div id="property-items"></div>
+      <p id="property-empty" style="color:#555;">No properties yet. Add one above to get started.</p>
     </div>
   </main>
 
   <footer>© 2025 RentEase. All rights reserved.</footer>
 
   <script>
+    const API_BASE = window.location.origin;
     const typeSelect = document.getElementById('type');
     const extraFields = document.getElementById('extra-fields');
-    const propertyList = document.getElementById('property-list');
+    const propertyItems = document.getElementById('property-items');
+    const propertyEmpty = document.getElementById('property-empty');
     const form = document.getElementById('add-property-form');
 
-    typeSelect.addEventListener('change', () => {
+    const setExtraFields = () => {
       const type = typeSelect.value;
       extraFields.innerHTML = '';
-      if (type === 'family' || type === 'bachelor' || type === 'sublet') {
+      if (['family', 'bachelor', 'sublet'].includes(type)) {
         extraFields.innerHTML = `
           <div style="display:flex;gap:10px;">
             <input type="number" id="bed" placeholder="Bed" required>
@@ -163,46 +160,95 @@
           <input type="number" id="room" placeholder="Room Count" required>
           <input type="text" id="purpose" placeholder="Office Purpose (optional)">`;
       }
+    };
+
+    const fileToDataUrl = file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
     });
 
-    form.addEventListener('submit', e => {
+    const renderProperties = properties => {
+      propertyItems.innerHTML = '';
+      if (!properties.length) {
+        propertyEmpty.style.display = 'block';
+        return;
+      }
+      propertyEmpty.style.display = 'none';
+      properties.forEach(property => {
+        const card = document.createElement('div');
+        card.classList.add('property-card');
+        card.innerHTML = `
+          <img src="${property.image}" alt="${property.name}">
+          <h4>${property.name}</h4>
+          <p><strong>Location:</strong> ${property.location}</p>
+          <p><strong>Type:</strong> ${property.type.charAt(0).toUpperCase() + property.type.slice(1)}</p>
+          <p><strong>Details:</strong> ${property.details}</p>
+          <p><strong>Rent:</strong> ${property.rent} BDT</p>
+          <p><strong>Status:</strong> ${property.status}</p>`;
+        propertyItems.appendChild(card);
+      });
+    };
+
+    const loadProperties = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/properties`);
+        const data = await res.json();
+        renderProperties(data.properties || []);
+      } catch (err) {
+        console.error('Failed to load properties', err);
+      }
+    };
+
+    typeSelect.addEventListener('change', setExtraFields);
+
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const name = document.getElementById('name').value;
       const location = document.getElementById('location').value;
-      const rent = document.getElementById('rent').value;
+      const rent = Number(document.getElementById('rent').value);
       const type = document.getElementById('type').value;
       const imageFile = document.getElementById('image').files[0];
-      const imageURL = URL.createObjectURL(imageFile);
-      let details = '';
+      const image = imageFile ? await fileToDataUrl(imageFile) : '';
+      const description = document.getElementById('details').value;
+
+      let details = description;
       if (type === 'office') {
         const room = document.getElementById('room')?.value || '';
         const purpose = document.getElementById('purpose')?.value || '';
-        details = `${room} Room ${purpose ? '• ' + purpose : ''}`;
+        details = description || `${room} Room${purpose ? ' • ' + purpose : ''}`;
       } else if (type === 'hostel') {
         const gender = document.getElementById('gender').value;
         const bed = document.getElementById('bed').value;
         const bath = document.getElementById('bath').value;
-        details = `${bed} Bed (${gender}) • ${bath} Bath`;
-      } else {
+        details = description || `${bed} Bed (${gender}) • ${bath} Bath`;
+      } else if (['family', 'bachelor', 'sublet'].includes(type)) {
         const bed = document.getElementById('bed').value;
         const bath = document.getElementById('bath').value;
         const corridor = document.getElementById('corridor').value;
-        details = `${bed} Bed • ${bath} Bathroom • ${corridor} Corridor`;
+        details = description || `${bed} Bed • ${bath} Bathroom • ${corridor} Corridor`;
       }
-      const card = document.createElement('div');
-      card.classList.add('property-card');
-      card.innerHTML = `
-        <img src="${imageURL}" alt="${name}">
-        <h4>${name}</h4>
-        <p><strong>Location:</strong> ${location}</p>
-        <p><strong>Type:</strong> ${type.charAt(0).toUpperCase() + type.slice(1)}</p>
-        <p><strong>Details:</strong> ${details}</p>
-        <p><strong>Rent:</strong> ${rent} BDT</p>`;
-      propertyList.appendChild(card);
-      form.reset();
-      extraFields.innerHTML = '';
-      alert("✅ New property added successfully!");
+
+      try {
+        const res = await fetch(`${API_BASE}/api/properties`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, location, rent, type, details, image })
+        });
+        if (!res.ok) throw new Error('Failed to save property');
+        const { property, properties } = await res.json();
+        renderProperties(properties || [property]);
+        form.reset();
+        extraFields.innerHTML = '';
+        alert('✅ New property added successfully!');
+      } catch (err) {
+        alert('Unable to save property. Please try again.');
+        console.error(err);
+      }
     });
+
+    loadProperties();
   </script>
 </body>
 </html>
